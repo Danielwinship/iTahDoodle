@@ -19,7 +19,7 @@ class ViewController: UIViewController,UITableViewDelegate {
         super.viewDidLoad()
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "Cell")
         tableView.dataSource = todoList
-        // Do any additional setup after loading the view, typically from a nib.
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -31,11 +31,7 @@ class ViewController: UIViewController,UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let cell  = tableView.cellForRow(at: indexPath)
         cell!.textLabel?.textColor = UIColor.red
-        
-        //tableView.cellForRow(at: indexPath)?.textLabel?.textColor = UIColor.red
         todoList.itemsToBeDeleted.append(indexPath.row)
-        //print(todoList.itemsToBeDeleted.count)
-        
         
     }
     
@@ -59,7 +55,6 @@ class ViewController: UIViewController,UITableViewDelegate {
     override func viewWillAppear(_ animated: Bool) {
         print("View loaded")
         todoList.loadItems(urlToUse: todoList.fileURL)
-//        todoList.loadArrayForUse(nameOfArray: todoList.everyItemEverAdded, urlToUse: todoList.fileURLUsed)
         self.tableView.reloadData()
     }
  

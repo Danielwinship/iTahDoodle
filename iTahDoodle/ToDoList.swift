@@ -9,6 +9,7 @@
 import UIKit
 
 class ToDoList: NSObject {
+    
      let fileURL: URL = {
         let documentDirectoryURLs = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
         let documentDirectoryURL = documentDirectoryURLs.first!
@@ -42,7 +43,7 @@ class ToDoList: NSObject {
     func loadItems(urlToUse:URL)  {
           items.removeAll()
         if let itemsArray = NSArray(contentsOf: urlToUse) as? [String] {
-            items = itemsArray
+            items = itemsArray.sorted()
         }
     }
     
@@ -107,11 +108,13 @@ extension ToDoList: UITableViewDataSource {
     
         return items.count
     }
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
        
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
         let item = items[indexPath.row]
         cell.textLabel!.text = item
+        cell.textLabel?.font = UIFont(name: "Helvetica Neue", size: 17)
         cell.textLabel?.textColor = UIColor.black
         return cell
         

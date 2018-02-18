@@ -13,7 +13,7 @@ class ItemAdditionViewController: UIViewController, UITableViewDelegate{
     
     @IBAction func textFieldPrimaryActionTrigger(_ sender: Any) {
         
-        print("Add to-do item: \(itemTextField.text)")
+        print("Add to-do item: \(String(describing: itemTextField.text))")
                 guard let item = itemTextField.text else {
                     return
                 }
@@ -23,9 +23,7 @@ class ItemAdditionViewController: UIViewController, UITableViewDelegate{
                 }
         todoList.add(arrayToUse: todoList.everyItemEverAdded, item: item, url: todoList.fileURLUsed)
         todoList.add(arrayToUse: todoList.itemsToBeAdded, item: item, url: todoList.fileURL)
-                //todoList.add(item, url: todoList.fileURL)
-                //itemTextField.text = ""
-                //tableView.reloadData()
+        
         
                 dismiss(animated: true, completion: nil)
                
@@ -49,16 +47,11 @@ class ItemAdditionViewController: UIViewController, UITableViewDelegate{
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        //print("Add to-do item: \(itemTextField.text)")
+        
         guard let item = tableView.cellForRow(at: indexPath)?.textLabel?.text else {
             return
         }
-//
-//        if todoList.everyItemEverAdded.contains(item) {
-//            return
-//        }
-       
-//        todoList.add(arrayToUse: todoList.everyItemEverAdded, item: item, url: todoList.fileURLUsed)
+
         todoList.add(arrayToUse: todoList.itemsToBeAdded, item: item, url: todoList.fileURL)
         dismiss(animated: true, completion: nil)
         
