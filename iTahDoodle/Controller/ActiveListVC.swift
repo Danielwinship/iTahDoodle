@@ -52,12 +52,6 @@ class ActiveListVC: UIViewController {
         
     }
     
-    
-    
-
-    
-    
-  
 
 }
 
@@ -79,18 +73,10 @@ extension ActiveListVC:UITableViewDelegate,UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        DataServices.instance.save(itemName: itemsArray[indexPath.row].name!, activeList: false) { (success) in
-            if success {
-                DataServices.instance.fetch(completion: { (success) in
-                    if success {
-                        print("didSelectRow fetch success")
-                    }
-                }, handler: { (returnedItemsArray) in
-                    self.itemsArray = returnedItemsArray
-                    tableView.reloadData()
-                })
-            }
-        }
+       let removeActiveItem = itemsArray[indexPath.row]
+        removeActiveItem.activeList = false
+        print("\(removeActiveItem.activeList)")
+        tableView.reloadData()
     }
     
     

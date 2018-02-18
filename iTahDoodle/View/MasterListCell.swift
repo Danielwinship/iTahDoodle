@@ -16,7 +16,8 @@ class MasterListCell: UITableViewCell {
     
     
     func setupView(item:Item){
-        self.itemLabel.text = item.name
+        itemLabel.text = item.name
+        item.activeList = true
     }
     
     
