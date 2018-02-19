@@ -46,6 +46,7 @@ class DataServices {
         
         do {
             try managedContext.save()
+            
             print("Successfully saved data")
             completion(true)
         }catch {

@@ -7,14 +7,18 @@
 //
 
 import UIKit
+import CoreData
 
 class ActiveListCell: UITableViewCell {
 
     @IBOutlet weak var itemLabel: UILabel!
     
-    func setupView(item:Item){
-        if item.activeList == true {
-           self.itemLabel.text = item.name
+    func setupView(itemName: String, itemActive: Bool){
+        if itemActive == true {
+           self.itemLabel.text = itemName
+            self.itemLabel.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+        } else {
+            self.itemLabel.textColor = #colorLiteral(red: 0.7450980544, green: 0.1568627506, blue: 0.07450980693, alpha: 1)
         }
     }
     

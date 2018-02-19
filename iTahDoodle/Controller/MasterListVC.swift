@@ -34,29 +34,16 @@ class MasterListVC: UIViewController {
                 print("successfully fetched items")
             }
         }) { (returnedItemsArray) in
+            if self.itemsArray.count != 0 {
+                self.itemsArray.removeAll()
+            }
             self.itemsArray = returnedItemsArray
         }
         
         tableView.reloadData()
     }
     
-//    func save(completion:( _ finished:Bool) -> ()) {
-//        guard let managedContext = appDelegate?.persistentContainer.viewContext else {return}
-//        let item = Item(context: managedContext)
-//
-//        item.name = itemTextField.text
-//        item.activeList = true
-//
-//
-//        do {
-//            try managedContext.save()
-//            print("Successfully saved data")
-//            completion(true)
-//        }catch {
-//            debugPrint("Could not save \(error.localizedDescription)")
-//            completion(false)
-//        }
-//    }
+
     
     
     
@@ -88,6 +75,14 @@ extension MasterListVC: UITableViewDataSource,UITableViewDelegate {
         return cell
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let itemName = itemsArray[indexPath.row].name
+        DataServices.instance.save(itemName: itemName!, activeList: true, completion: { (complete) in
+            if complete {
+                dismiss(animated: true, completion: nil)
+            }
+        })
+    }
     
 }
 
