@@ -76,8 +76,8 @@ extension MasterListVC: UITableViewDataSource,UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let itemName = itemsArray[indexPath.row].name
-        DataServices.instance.update(itemName: itemName!, activeList: true, completion: { (complete) in
+        //let itemName = itemsArray[indexPath.row].name
+        DataServices.instance.update(completion: { (complete) in
             if complete {
                 dismiss(animated: true, completion: nil)
             }

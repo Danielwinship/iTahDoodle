@@ -38,11 +38,9 @@ class ActiveListVC: UIViewController {
             }
         }) { (returnedItemsArray) in
             for item in returnedItemsArray {
-                if self.activeItemsArray.contains(item) {
-                    break
-                } else {
-                      self.activeItemsArray.append(item)
-                }
+                if item.activeList == true {
+                    self.activeItemsArray.append(item)
+                } 
             }
         }
         
@@ -108,8 +106,8 @@ class ActiveListVC: UIViewController {
         if removeItemsRow.count != 0 {
            
             for i in removeItemsRow.reversed() {
-                let name = activeItemsArray[i].name
-                DataServices.instance.update(itemName: name!, activeList: false, completion: { (success) in
+                //let name = activeItemsArray[i].name
+                DataServices.instance.update(completion: { (success) in
                     if success {
                         activeItemsArray.remove(at: i)
                     }
@@ -124,8 +122,8 @@ class ActiveListVC: UIViewController {
     }
     
     func removeAllItemsfromActiveItemsArray() {
-        for item in activeItemsArray {
-            DataServices.instance.update(itemName: item.name!, activeList: false, completion: { (success) in
+        for _ in activeItemsArray {
+            DataServices.instance.update(completion: { (success) in
                 if success {
                     activeItemsArray.removeAll()
                     self.tableView.reloadData()

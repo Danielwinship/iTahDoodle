@@ -56,7 +56,7 @@ class DataServices {
         }
     }
     
-    func update(itemName name:String, activeList active:Bool, completion:(_ finished:Bool) -> ()) {
+    func update(completion:(_ finished:Bool) -> ()) {
         var returnedItems = [Item]()
         guard let managedContext = appDelegate?.persistentContainer.viewContext else {return}
         
@@ -65,12 +65,16 @@ class DataServices {
         do{
             returnedItems = try  managedContext.fetch(fetchRequest)
             for returnedItem in returnedItems {
-                if returnedItem.name == name {
-                    returnedItem.activeList = active
-                    try managedContext.save()
+                if returnedItem.activeList == true {
+                    returnedItem.activeList = false
+                   
+                    
+                } else {
+                    returnedItem.activeList = true
+                    
                 }
             }
-           
+            try managedContext.save()
             print("Successfully updated record")
             completion(true)
             
