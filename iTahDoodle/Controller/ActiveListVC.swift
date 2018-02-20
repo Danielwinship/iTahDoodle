@@ -104,14 +104,14 @@ class ActiveListVC: UIViewController {
     
     func removeItemsFromActiveItemsArray() {
          removeItemsRow.sort()
-        print(removeItemsRow.count)
+        
         if removeItemsRow.count != 0 {
            
             for i in removeItemsRow.reversed() {
                 let name = activeItemsArray[i].name
-                DataServices.instance.save(itemName: name!, activeList: false, completion: { (success) in
+                DataServices.instance.update(itemName: name!, activeList: false, completion: { (success) in
                     if success {
-                         activeItemsArray.remove(at: i)
+                        activeItemsArray.remove(at: i)
                     }
                 })
                
@@ -125,7 +125,7 @@ class ActiveListVC: UIViewController {
     
     func removeAllItemsfromActiveItemsArray() {
         for item in activeItemsArray {
-            DataServices.instance.save(itemName: item.name!, activeList: false, completion: { (success) in
+            DataServices.instance.update(itemName: item.name!, activeList: false, completion: { (success) in
                 if success {
                     activeItemsArray.removeAll()
                     self.tableView.reloadData()

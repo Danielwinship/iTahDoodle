@@ -17,10 +17,11 @@ class DataServices {
 
      var items = [Item]()
   
+    
     func fetch(completion: (_ complete: Bool) -> (),handler:@escaping (_ itemsArray: [Item]) -> ()) {
         
         guard let managedContext = appDelegate?.persistentContainer.viewContext else {return}
-    
+        
         let fetchRequest = NSFetchRequest<Item>(entityName: "Item")
         
         do{
@@ -55,6 +56,31 @@ class DataServices {
         }
     }
     
+    func update(itemName name:String, activeList active:Bool, completion:(_ finished:Bool) -> ()) {
+        var returnedItems = [Item]()
+        guard let managedContext = appDelegate?.persistentContainer.viewContext else {return}
+        
+        let fetchRequest = NSFetchRequest<Item>(entityName: "Item")
+        
+        do{
+            returnedItems = try  managedContext.fetch(fetchRequest)
+            for returnedItem in returnedItems {
+                if returnedItem.name == name {
+                    returnedItem.activeList = active
+                    try managedContext.save()
+                }
+            }
+           
+            print("Successfully updated record")
+            completion(true)
+            
+            
+        }catch {
+            debugPrint("Could not update record \(error.localizedDescription)")
+            completion(false)
+        }
+        
+    }
     
   
     
