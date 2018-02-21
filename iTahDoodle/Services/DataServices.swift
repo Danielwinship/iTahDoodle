@@ -15,11 +15,11 @@ class DataServices {
     
     static let instance = DataServices()
 
-     var items = [Item]()
+    
   
     
     func fetch(completion: (_ complete: Bool) -> (),handler:@escaping (_ itemsArray: [Item]) -> ()) {
-        
+         var items = [Item]()
         guard let managedContext = appDelegate?.persistentContainer.viewContext else {return}
         
         let fetchRequest = NSFetchRequest<Item>(entityName: "Item")
@@ -56,7 +56,7 @@ class DataServices {
         }
     }
     
-    func update(completion:(_ finished:Bool) -> ()) {
+    func update(itemName name:String, active:Bool, completion:(_ finished:Bool) -> ()) {
         var returnedItems = [Item]()
         guard let managedContext = appDelegate?.persistentContainer.viewContext else {return}
         
@@ -64,15 +64,16 @@ class DataServices {
         
         do{
             returnedItems = try  managedContext.fetch(fetchRequest)
-            for returnedItem in returnedItems {
-                if returnedItem.activeList == true {
-                    returnedItem.activeList = false
-                   
-                    
-                } else {
-                    returnedItem.activeList = true
-                    
+            for returnedItem in returnedItems as [NSManagedObject] {
+                if returnedItem.value(forKey: "name") as? String == name {
+                  
+                    returnedItem.setValue(true, forKey: "activeList")
                 }
+//                } else {
+//                    returnedItem.setValue(false, forKey: "activeList")
+//
+//                }
+                
             }
             try managedContext.save()
             print("Successfully updated record")

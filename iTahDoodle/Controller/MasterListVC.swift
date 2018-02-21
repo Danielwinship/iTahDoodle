@@ -54,8 +54,8 @@ class MasterListVC: UIViewController {
                     dismiss(animated: true, completion: nil)
                 }
             })
-  }
-}
+        }
+    }
     
     
 }
@@ -76,8 +76,8 @@ extension MasterListVC: UITableViewDataSource,UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        //let itemName = itemsArray[indexPath.row].name
-        DataServices.instance.update(completion: { (complete) in
+        guard let name = itemsArray[indexPath.row].name else {return}
+        DataServices.instance.update(itemName: name, active: true, completion: { (complete) in
             if complete {
                 dismiss(animated: true, completion: nil)
             }
