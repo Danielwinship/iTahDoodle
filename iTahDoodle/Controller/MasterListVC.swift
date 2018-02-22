@@ -16,7 +16,7 @@ class MasterListVC: UIViewController {
     @IBOutlet weak var itemTextField: UITextField!
     
     //Variables
-    var itemsArray = [Item]()
+    var masterItemsArray = [Item]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,15 +32,18 @@ class MasterListVC: UIViewController {
         DataServices.instance.fetch(completion: { (success) in
             if success {
                 print("successfully fetched items")
+                self.masterItemsArray.removeAll()
             }
         }) { (returnedItemsArray) in
-            if self.itemsArray.count != 0 {
-                self.itemsArray.removeAll()
+            
+            for returnedItem in returnedItemsArray {
+                if returnedItem.activeList == false {
+                   self.masterItemsArray.append(returnedItem)
+                }
             }
-            self.itemsArray = returnedItemsArray
         }
         
-        tableView.reloadData()
+        //tableView.reloadData()
     }
     
 
@@ -56,6 +59,9 @@ class MasterListVC: UIViewController {
             })
         }
     }
+  
+    
+    
     
     
 }
@@ -66,18 +72,18 @@ extension MasterListVC: UITableViewDataSource,UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return itemsArray.count
+        return masterItemsArray.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "MasterListCell") as? MasterListCell else {return UITableViewCell()}
-        cell.setupView(item: itemsArray[indexPath.row])
+        cell.setupView(item: masterItemsArray[indexPath.row])
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard let name = itemsArray[indexPath.row].name else {return}
-        DataServices.instance.update(itemName: name, active: true, completion: { (complete) in
+         let selectedItem = masterItemsArray[indexPath.item]
+        DataServices.instance.update(itemName: selectedItem.name!, active: true, completion: { (complete) in
             if complete {
                 dismiss(animated: true, completion: nil)
             }

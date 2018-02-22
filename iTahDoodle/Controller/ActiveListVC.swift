@@ -40,7 +40,8 @@ class ActiveListVC: UIViewController {
             for item in returnedItemsArray {
                 if item.activeList == true {
                     self.activeItemsArray.append(item)
-                } 
+                }
+                
             }
         }
         
@@ -109,6 +110,7 @@ class ActiveListVC: UIViewController {
                 guard let name = activeItemsArray[i].name else {return}
                 DataServices.instance.update(itemName: name, active: false, completion: { (success) in
                     if success {
+                      
                         activeItemsArray.remove(at: i)
                     }
                 })
@@ -164,14 +166,16 @@ extension ActiveListVC:UITableViewDelegate,UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        removeItemsRow.append(indexPath.item)
+        
        let selectedActiveItem = activeItemsArray[indexPath.item]
-       
+
         if selectedActiveItem.activeList == true {
              selectedActiveItem.activeList = false
+            removeItemsRow.append(indexPath.item)
              self.tableView.reloadData()
         } else {
             selectedActiveItem.activeList = true
+            removeItemsRow.remove(at: indexPath.item)
             self.tableView.reloadData()
         }
         

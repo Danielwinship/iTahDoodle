@@ -57,29 +57,20 @@ class DataServices {
     }
     
     func update(itemName name:String, active:Bool, completion:(_ finished:Bool) -> ()) {
-        var returnedItems = [Item]()
+        
         guard let managedContext = appDelegate?.persistentContainer.viewContext else {return}
         
         let fetchRequest = NSFetchRequest<Item>(entityName: "Item")
-        
+        let predicate = NSPredicate(format: "name CONTAINS[c] %@", name)
+        fetchRequest.predicate = predicate
         do{
-            returnedItems = try  managedContext.fetch(fetchRequest)
-            for returnedItem in returnedItems as [NSManagedObject] {
-                if returnedItem.value(forKey: "name") as? String == name {
-                  
-                    returnedItem.setValue(true, forKey: "activeList")
-                }
-//                } else {
-//                    returnedItem.setValue(false, forKey: "activeList")
-//
-//                }
-                
+            let fetchedItem = try  managedContext.fetch(fetchRequest)
+            if fetchedItem.count != 0 {
+               fetchedItem.first?.activeList = active
+                try managedContext.save()
+                print("Successfully updated record")
+                completion(true)
             }
-            try managedContext.save()
-            print("Successfully updated record")
-            completion(true)
-            
-            
         }catch {
             debugPrint("Could not update record \(error.localizedDescription)")
             completion(false)
