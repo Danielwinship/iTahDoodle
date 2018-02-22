@@ -14,18 +14,20 @@ let appDelegate = UIApplication.shared.delegate as? AppDelegate
 class DataServices {
     
     static let instance = DataServices()
+    let managedContext = appDelegate?.persistentContainer.viewContext
+    
 
     
   
     
     func fetch(completion: (_ complete: Bool) -> (),handler:@escaping (_ itemsArray: [Item]) -> ()) {
          var items = [Item]()
-        guard let managedContext = appDelegate?.persistentContainer.viewContext else {return}
+        //guard let managedContext = appDelegate?.persistentContainer.viewContext else {return}
         
         let fetchRequest = NSFetchRequest<Item>(entityName: "Item")
         
         do{
-            items = try  managedContext.fetch(fetchRequest)
+            items = (try  managedContext?.fetch(fetchRequest))!
             print("Successfully fetched data")
             completion(true)
             handler(items)
@@ -38,38 +40,47 @@ class DataServices {
     }
     
     func save(itemName name: String, activeList active: Bool, completion:( _ finished:Bool) -> ()) {
-        guard let managedContext = appDelegate?.persistentContainer.viewContext else {return}
-        let item = Item(context: managedContext)
+        //guard let managedContext = appDelegate?.persistentContainer.viewContext else {return}
+        let item = Item(context: managedContext!)
         
         item.name = name
         item.activeList = active
         
         
         do {
-            try managedContext.save()
+            try managedContext?.save()
             
-            print("Successfully saved data")
-            completion(true)
+           
         }catch {
             debugPrint("Could not save \(error.localizedDescription)")
             completion(false)
         }
+        print("Successfully saved data")
+        completion(true)
     }
     
-    func update(itemName name:String, active:Bool, completion:(_ finished:Bool) -> ()) {
-        
-        guard let managedContext = appDelegate?.persistentContainer.viewContext else {return}
+    func update(objectId id:NSManagedObjectID, active:Bool, completion:(_ finished:Bool) -> ()) {
+        var fetchedItems = [Item]()
+        //guard let managedContext = appDelegate?.persistentContainer.viewContext else {return}
         
         let fetchRequest = NSFetchRequest<Item>(entityName: "Item")
-        let predicate = NSPredicate(format: "name CONTAINS[c] %@", name)
-        fetchRequest.predicate = predicate
+//        let predicate = NSPredicate(format: "id = %@", id)
+//        fetchRequest.predicate = predicate
         do{
-            let fetchedItem = try  managedContext.fetch(fetchRequest)
-            if fetchedItem.count != 0 {
-               fetchedItem.first?.activeList = active
-                try managedContext.save()
+            fetchedItems = (try  managedContext?.fetch(fetchRequest))!
+            if fetchedItems.count != 0 {
+                for fetchedItem in fetchedItems {
+                    if fetchedItem.objectID == id {
+                        fetchedItem.activeList = active 
+                    }
+                }
+                
+                try managedContext?.save()
                 print("Successfully updated record")
                 completion(true)
+            }else {
+                print("Update fetch found no records")
+                return
             }
         }catch {
             debugPrint("Could not update record \(error.localizedDescription)")

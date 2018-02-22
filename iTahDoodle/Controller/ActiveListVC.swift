@@ -107,8 +107,8 @@ class ActiveListVC: UIViewController {
         if removeItemsRow.count != 0 {
            
             for i in removeItemsRow.reversed() {
-                guard let name = activeItemsArray[i].name else {return}
-                DataServices.instance.update(itemName: name, active: false, completion: { (success) in
+                 let id = activeItemsArray[i].objectID
+                DataServices.instance.update(objectId: id , active: false, completion: { (success) in
                     if success {
                       
                         activeItemsArray.remove(at: i)
@@ -125,22 +125,19 @@ class ActiveListVC: UIViewController {
     
     func removeAllItemsfromActiveItemsArray() {
         for item in activeItemsArray {
-            guard let name = item.name else {return}
-            DataServices.instance.update(itemName: name, active: false, completion: { (success) in
+             let id = item.objectID
+            DataServices.instance.update(objectId: id, active: false, completion: { (success) in
                 if success {
                     activeItemsArray.removeAll()
                     self.tableView.reloadData()
                 }
             })
         }
-        
-        
     }
     
     
     @IBAction func menuButtonWasPressed(_ sender: Any) {
       showActionSheet()
-        
     }
     
 

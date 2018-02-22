@@ -17,6 +17,7 @@ class MasterListVC: UIViewController {
     
     //Variables
     var masterItemsArray = [Item]()
+    var addItemArray = [Int]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,15 +44,21 @@ class MasterListVC: UIViewController {
             }
         }
         
-        //tableView.reloadData()
+        
     }
     
-
+    
+    
+    @IBAction func cancelButtonWasPressed(_ sender: Any) {
+        dismiss(animated: true, completion: nil)
+    }
+    
     
     
     
     @IBAction func itemTextFieldUsed(_ sender: Any) {
         if itemTextField.text != "" {
+           
             DataServices.instance.save(itemName: itemTextField.text!, activeList: true, completion: { (complete) in
                 if complete {
                     dismiss(animated: true, completion: nil)
@@ -83,11 +90,12 @@ extension MasterListVC: UITableViewDataSource,UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
          let selectedItem = masterItemsArray[indexPath.item]
-        DataServices.instance.update(itemName: selectedItem.name!, active: true, completion: { (complete) in
+        DataServices.instance.update(objectId: selectedItem.objectID, active: true, completion: { (complete) in
             if complete {
                 dismiss(animated: true, completion: nil)
             }
         })
+        
     }
     
 }
