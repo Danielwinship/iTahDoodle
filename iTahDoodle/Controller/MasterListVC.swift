@@ -24,7 +24,7 @@ class MasterListVC: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         itemTextField.returnKeyType = UIReturnKeyType.done
-        // Do any additional setup after loading the view.
+        
        
     }
     

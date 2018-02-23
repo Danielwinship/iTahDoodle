@@ -22,7 +22,7 @@ class DataServices {
     
     func fetch(completion: (_ complete: Bool) -> (),handler:@escaping (_ itemsArray: [Item]) -> ()) {
          var items = [Item]()
-        //guard let managedContext = appDelegate?.persistentContainer.viewContext else {return}
+        
         
         let fetchRequest = NSFetchRequest<Item>(entityName: "Item")
         
@@ -40,7 +40,7 @@ class DataServices {
     }
     
     func save(itemName name: String, activeList active: Bool, completion:( _ finished:Bool) -> ()) {
-        //guard let managedContext = appDelegate?.persistentContainer.viewContext else {return}
+       
         let item = Item(context: managedContext!)
         
         item.name = name
@@ -61,11 +61,10 @@ class DataServices {
     
     func update(objectId id:NSManagedObjectID, active:Bool, completion:(_ finished:Bool) -> ()) {
         var fetchedItems = [Item]()
-        //guard let managedContext = appDelegate?.persistentContainer.viewContext else {return}
+       
         
         let fetchRequest = NSFetchRequest<Item>(entityName: "Item")
-//        let predicate = NSPredicate(format: "id = %@", id)
-//        fetchRequest.predicate = predicate
+
         do{
             fetchedItems = (try  managedContext?.fetch(fetchRequest))!
             if fetchedItems.count != 0 {

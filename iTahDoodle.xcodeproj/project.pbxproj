@@ -12,14 +12,11 @@
 		0752B85F20378F99006490E9 /* MasterListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0752B85E20378F99006490E9 /* MasterListVC.swift */; };
 		0752B86120379049006490E9 /* MasterListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0752B86020379049006490E9 /* MasterListCell.swift */; };
 		0752B86520379FC6006490E9 /* DataServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0752B86420379FC6006490E9 /* DataServices.swift */; };
-		07808C3A1F923457007F320F /* ItemAdditionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07808C391F923457007F320F /* ItemAdditionViewController.swift */; };
 		07BEB4491F85A19C002A7A37 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07BEB4481F85A19C002A7A37 /* AppDelegate.swift */; };
-		07BEB44B1F85A19C002A7A37 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07BEB44A1F85A19C002A7A37 /* ViewController.swift */; };
 		07BEB44E1F85A19C002A7A37 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 07BEB44C1F85A19C002A7A37 /* Main.storyboard */; };
 		07BEB4501F85A19C002A7A37 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 07BEB44F1F85A19C002A7A37 /* Assets.xcassets */; };
 		07BEB4531F85A19C002A7A37 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 07BEB4511F85A19C002A7A37 /* LaunchScreen.storyboard */; };
 		07DF7176203A04CE0023159E /* iTahDoodle.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 07DF7174203A04CE0023159E /* iTahDoodle.xcdatamodeld */; };
-		07F046301F8810230077E978 /* ToDoList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F0462F1F8810230077E978 /* ToDoList.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,16 +25,13 @@
 		0752B85E20378F99006490E9 /* MasterListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasterListVC.swift; sourceTree = "<group>"; };
 		0752B86020379049006490E9 /* MasterListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasterListCell.swift; sourceTree = "<group>"; };
 		0752B86420379FC6006490E9 /* DataServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataServices.swift; sourceTree = "<group>"; };
-		07808C391F923457007F320F /* ItemAdditionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemAdditionViewController.swift; sourceTree = "<group>"; };
 		07BEB4451F85A19C002A7A37 /* iTahDoodle.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iTahDoodle.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		07BEB4481F85A19C002A7A37 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		07BEB44A1F85A19C002A7A37 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		07BEB44D1F85A19C002A7A37 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		07BEB44F1F85A19C002A7A37 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		07BEB4521F85A19C002A7A37 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		07BEB4541F85A19C002A7A37 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		07DF7175203A04CE0023159E /* CoreDataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CoreDataModel.xcdatamodel; sourceTree = "<group>"; };
-		07F0462F1F8810230077E978 /* ToDoList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoList.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -109,10 +103,7 @@
 				0752B854203786D6006490E9 /* Model */,
 				0752B857203786E7006490E9 /* View */,
 				0752B856203786E2006490E9 /* Controller */,
-				07F0462F1F8810230077E978 /* ToDoList.swift */,
 				07BEB4481F85A19C002A7A37 /* AppDelegate.swift */,
-				07BEB44A1F85A19C002A7A37 /* ViewController.swift */,
-				07808C391F923457007F320F /* ItemAdditionViewController.swift */,
 				07BEB44C1F85A19C002A7A37 /* Main.storyboard */,
 				07BEB44F1F85A19C002A7A37 /* Assets.xcassets */,
 				07BEB4511F85A19C002A7A37 /* LaunchScreen.storyboard */,
@@ -200,11 +191,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				07BEB44B1F85A19C002A7A37 /* ViewController.swift in Sources */,
 				07DF7176203A04CE0023159E /* iTahDoodle.xcdatamodeld in Sources */,
 				0752B85B20378744006490E9 /* ActiveListCell.swift in Sources */,
-				07F046301F8810230077E978 /* ToDoList.swift in Sources */,
-				07808C3A1F923457007F320F /* ItemAdditionViewController.swift in Sources */,
 				0752B86520379FC6006490E9 /* DataServices.swift in Sources */,
 				0752B85F20378F99006490E9 /* MasterListVC.swift in Sources */,
 				0752B8592037870B006490E9 /* ActiveListVC.swift in Sources */,
