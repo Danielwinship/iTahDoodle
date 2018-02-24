@@ -23,7 +23,7 @@ class DataServices {
     func fetch(completion: (_ complete: Bool) -> (),handler:@escaping (_ itemsArray: [Item]) -> ()) {
          var items = [Item]()
         
-        
+    
         let fetchRequest = NSFetchRequest<Item>(entityName: "Item")
         
         do{
@@ -39,7 +39,7 @@ class DataServices {
         
     }
     
-    func save(itemName name: String, activeList active: Bool, completion:( _ finished:Bool) -> ()) {
+    func save(itemName name:String, activeList active: Bool, completion:( _ finished:Bool) -> ()) {
        
         let item = Item(context: managedContext!)
         

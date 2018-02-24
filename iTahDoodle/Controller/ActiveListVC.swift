@@ -164,15 +164,16 @@ extension ActiveListVC:UITableViewDelegate,UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-       let selectedActiveItem = activeItemsArray[indexPath.item]
+       let selectedActiveItem = activeItemsArray[indexPath.row]
 
         if selectedActiveItem.activeList == true {
              selectedActiveItem.activeList = false
-            removeItemsRow.append(indexPath.item)
+            removeItemsRow.append(indexPath.row)
              self.tableView.reloadData()
         } else {
             selectedActiveItem.activeList = true
-            removeItemsRow.remove(at: indexPath.item)
+            
+            removeItemsRow.remove(at: indexPath.row)
             self.tableView.reloadData()
         }
         

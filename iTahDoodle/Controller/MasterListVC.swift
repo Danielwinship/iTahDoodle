@@ -84,7 +84,12 @@ extension MasterListVC: UITableViewDataSource,UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "MasterListCell") as? MasterListCell else {return UITableViewCell()}
-        cell.setupView(item: masterItemsArray[indexPath.row])
+        if masterItemsArray[indexPath.row].name == itemTextField.text {
+            cell.setupView(item: masterItemsArray[indexPath.row])
+        }else {
+           cell.setupView(item: masterItemsArray[indexPath.row])
+        }
+       
         return cell
     }
     
