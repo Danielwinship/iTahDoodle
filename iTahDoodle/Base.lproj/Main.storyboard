@@ -64,20 +64,20 @@
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="60"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IVb-QM-ZRH">
-                                                <rect key="frame" x="0.0" y="0.0" width="52.5" height="60"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="48.5" height="60"/>
                                                 <state key="normal" image="menu_btn"/>
                                                 <connections>
                                                     <action selector="menuButtonWasPressed:" destination="j86-qf-wmn" eventType="touchUpInside" id="3QF-7l-GX8"/>
                                                 </connections>
                                             </button>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="List Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GS0-vA-KhJ">
-                                                <rect key="frame" x="52.5" y="0.0" width="270" height="60"/>
-                                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="iTahDoodle" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GS0-vA-KhJ">
+                                                <rect key="frame" x="48.5" y="0.0" width="278" height="60"/>
+                                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="16"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hcy-aN-FdE">
-                                                <rect key="frame" x="322.5" y="0.0" width="52.5" height="60"/>
+                                                <rect key="frame" x="326.5" y="0.0" width="48.5" height="60"/>
                                                 <state key="normal" image="add_btn"/>
                                                 <connections>
                                                     <segue destination="Ddr-7O-PbN" kind="presentation" id="oPj-gO-V4B"/>

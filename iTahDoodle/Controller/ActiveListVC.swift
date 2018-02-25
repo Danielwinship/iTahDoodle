@@ -18,7 +18,7 @@ class ActiveListVC: UIViewController {
     
     //Variables
     var activeItemsArray = [Item]()
-    var removeItemsRow = [Int]()
+    var removeItemsRow = [Int:Int]()
  
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -102,16 +102,17 @@ class ActiveListVC: UIViewController {
     }
     
     func removeItemsFromActiveItemsArray() {
-         removeItemsRow.sort()
+         //removeItemsRow.sort()
         
         if removeItemsRow.count != 0 {
            
-            for i in removeItemsRow.reversed() {
-                 let id = activeItemsArray[i].objectID
+            for i in removeItemsRow {
+                
+                 let id = activeItemsArray[i.value].objectID
                 DataServices.instance.update(objectId: id , active: false, completion: { (success) in
                     if success {
                       
-                        activeItemsArray.remove(at: i)
+                        activeItemsArray.remove(at: i.value)
                     }
                 })
                
@@ -164,16 +165,19 @@ extension ActiveListVC:UITableViewDelegate,UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-       let selectedActiveItem = activeItemsArray[indexPath.row]
+        let selectedActiveItem = activeItemsArray[indexPath.row]
 
         if selectedActiveItem.activeList == true {
              selectedActiveItem.activeList = false
-            removeItemsRow.append(indexPath.row)
+            print("appending \(indexPath)")
+            removeItemsRow.updateValue(indexPath.row, forKey: indexPath.row)
              self.tableView.reloadData()
         } else {
             selectedActiveItem.activeList = true
+            print("current count \(removeItemsRow.count)")
+            print("removing \(indexPath.row)")
             
-            removeItemsRow.remove(at: indexPath.row)
+            removeItemsRow.removeValue(forKey: indexPath.row)
             self.tableView.reloadData()
         }
         
