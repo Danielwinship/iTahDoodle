@@ -102,13 +102,14 @@ class ActiveListVC: UIViewController {
     }
     
     func removeItemsFromActiveItemsArray() {
-         //removeItemsRow.sort()
-        
+     let sortedRemoveItemsRow = removeItemsRow.sorted(by: >)
+       
         if removeItemsRow.count != 0 {
            
-            for i in removeItemsRow {
+            for i in sortedRemoveItemsRow {
                 
                  let id = activeItemsArray[i.value].objectID
+                
                 DataServices.instance.update(objectId: id , active: false, completion: { (success) in
                     if success {
                       
@@ -169,12 +170,12 @@ extension ActiveListVC:UITableViewDelegate,UITableViewDataSource {
 
         if selectedActiveItem.activeList == true {
              selectedActiveItem.activeList = false
-            print("appending \(indexPath)")
+            print("appending \(indexPath.item)")
             removeItemsRow.updateValue(indexPath.row, forKey: indexPath.row)
              self.tableView.reloadData()
         } else {
             selectedActiveItem.activeList = true
-            print("current count \(removeItemsRow.count)")
+            //print("current count \(removeItemsRow.count)")
             print("removing \(indexPath.row)")
             
             removeItemsRow.removeValue(forKey: indexPath.row)
