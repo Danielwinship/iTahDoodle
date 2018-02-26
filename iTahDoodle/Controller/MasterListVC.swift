@@ -58,7 +58,6 @@ class MasterListVC: UIViewController {
     
     @IBAction func itemTextFieldUsed(_ sender: Any) {
         if itemTextField.text != "" {
-           
             DataServices.instance.save(itemName: itemTextField.text!, activeList: true, completion: { (complete) in
                 if complete {
                     dismiss(animated: true, completion: nil)
@@ -84,12 +83,7 @@ extension MasterListVC: UITableViewDataSource,UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "MasterListCell") as? MasterListCell else {return UITableViewCell()}
-        if masterItemsArray[indexPath.row].name == itemTextField.text {
-            cell.setupView(item: masterItemsArray[indexPath.row])
-        }else {
-           cell.setupView(item: masterItemsArray[indexPath.row])
-        }
-       
+        cell.setupView(item: masterItemsArray[indexPath.row])
         return cell
     }
     
